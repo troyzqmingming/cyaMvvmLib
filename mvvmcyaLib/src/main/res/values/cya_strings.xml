@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="cya_scroll_behavior">com.aurelhubert.ahbottomnavigation.AHBottomNavigationBehavior</string>
+</resources>
