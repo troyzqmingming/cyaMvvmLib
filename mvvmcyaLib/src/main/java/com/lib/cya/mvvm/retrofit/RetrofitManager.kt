@@ -11,7 +11,7 @@ import okhttp3.ResponseBody
  * @param <R> result类型
  * @param <S> retorfit-interface
 </I></R> */
-class RetrofitManager private constructor(private val baseUrl: String, private val header: Map<String, String>, private val progress: IRetrofitProgressDialog?) {
+class RetrofitManager private constructor(private val baseUrl: String, private val header: Map<String, Any>, private val progress: IRetrofitProgressDialog?) {
 
 
     private constructor(builder: Builder) : this(
@@ -52,7 +52,7 @@ class RetrofitManager private constructor(private val baseUrl: String, private v
      */
     class Builder private constructor() {
         internal lateinit var baseUrl: String
-        internal var header: Map<String, String> = mapOf()
+        internal var header: Map<String, Any> = mapOf()
         internal var progress: IRetrofitProgressDialog? = null
 
         constructor(init: Builder.() -> Unit) : this() {
@@ -60,7 +60,7 @@ class RetrofitManager private constructor(private val baseUrl: String, private v
         }
 
         fun baseUrl(init: Builder.() -> String) = apply { baseUrl = init() }
-        fun header(init: Builder.() -> Map<String, String>) = apply { header = init() }
+        fun header(init: Builder.() -> Map<String, Any>) = apply { header = init() }
         fun progress(init: Builder.() -> IRetrofitProgressDialog) = apply { progress = init() }
         fun build() = RetrofitManager(this)
     }
