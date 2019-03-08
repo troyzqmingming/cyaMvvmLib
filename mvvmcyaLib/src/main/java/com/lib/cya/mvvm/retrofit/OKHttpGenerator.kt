@@ -20,7 +20,7 @@ internal class OKHttpGenerator private constructor() {
 
     private var isDebug: Boolean = true
     //header
-    private var header: Map<String, String> = hashMapOf()
+    private var header: Map<String, Any> = hashMapOf()
     private lateinit var okHttpClient: OkHttpClient
 
 
@@ -29,7 +29,7 @@ internal class OKHttpGenerator private constructor() {
         return this@OKHttpGenerator
     }
 
-    internal fun genOKHttpClient(maxRetryCount: Int, headers: Map<String, String>): OkHttpClient {
+    internal fun genOKHttpClient(maxRetryCount: Int, headers: Map<String, Any>): OkHttpClient {
         this@OKHttpGenerator.header = headers
         this@OKHttpGenerator.okHttpClient = getOKHttp(maxRetryCount)
         return this@OKHttpGenerator.okHttpClient

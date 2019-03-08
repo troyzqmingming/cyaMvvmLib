@@ -14,7 +14,7 @@ internal class RetrofitGenerator private constructor() {
         }
     }
 
-    fun build(baseUrl: String, header: Map<String, String>, maxRetryCount: Int = 0): Retrofit {
+    fun build(baseUrl: String, header: Map<String, Any>, maxRetryCount: Int = 0): Retrofit {
         return Retrofit.Builder()
                 .baseUrl(baseUrl)
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
