@@ -1,9 +1,11 @@
 package com.lib.cya.mvvm.retrofit
 
+import com.ihsanbal.logging.Level
+import com.ihsanbal.logging.LoggingInterceptor
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.Response
-import okhttp3.logging.HttpLoggingInterceptor
+import okhttp3.internal.platform.Platform
 import java.util.concurrent.TimeUnit
 
 internal class OKHttpGenerator private constructor() {
@@ -35,12 +37,16 @@ internal class OKHttpGenerator private constructor() {
         return this@OKHttpGenerator.okHttpClient
     }
 
-    private fun getLoggerInterceptor(): HttpLoggingInterceptor {
-        val httpLoggingInterceptor = HttpLoggingInterceptor()
+    private fun getLoggerInterceptor(): LoggingInterceptor {
+        val builder = LoggingInterceptor.Builder()
+        builder.loggable(isDebug)
         if (isDebug) {
-            httpLoggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
+            builder.setLevel(Level.BASIC)
+            builder.log(Platform.INFO)
+            builder.request("Request")
+            builder.response("Response")
         }
-        return httpLoggingInterceptor
+        return builder.build()
     }
 
     private fun getOKHttp(maxRetryCount: Int): OkHttpClient {
@@ -54,7 +60,7 @@ internal class OKHttpGenerator private constructor() {
                     val builder = chain!!.request().newBuilder()
                     val keys = header.keys
                     for (key in keys) {
-                        builder.addHeader(key, header.getValue(key))
+                        builder.addHeader(key, header.getValue(key).toString())
                     }
                     chain.proceed(builder.build())
                 }
