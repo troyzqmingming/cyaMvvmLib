@@ -39,7 +39,7 @@ def retrofit = dependencyGroup {
     api 'com.squareup.okhttp3:logging-interceptor:3.9.0'
     api 'com.squareup.okhttp3:okhttp:3.9.0'
     api 'zlc.season:rxdownload3:1.2.0'
-    api('com.github.ihsanbal:LoggingInterceptor:2.0.5') {
+    api('com.github.ihsanbal:LoggingInterceptor:3.0.0') {
         exclude group: 'org.json', module: 'json'
     }
 }
