@@ -7,6 +7,7 @@ def local = dependencyGroup {
     api fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     kapt "com.android.databinding:compiler:$gradle_plugin_version"
+    api project(':lib_picker')
 }
 
 def ui = dependencyGroup {
