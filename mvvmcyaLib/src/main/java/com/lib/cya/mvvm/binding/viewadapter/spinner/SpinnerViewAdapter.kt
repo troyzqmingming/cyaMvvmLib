@@ -1,6 +1,6 @@
 package com.lib.cya.mvvm.binding.viewadapter.spinner
 
-import android.databinding.BindingAdapter
+import androidx.databinding.BindingAdapter
 import android.text.TextUtils
 import android.view.View
 import android.widget.AdapterView

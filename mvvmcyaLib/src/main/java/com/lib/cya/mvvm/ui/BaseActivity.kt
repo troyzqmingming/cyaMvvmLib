@@ -1,7 +1,7 @@
 package com.lib.cya.mvvm.ui
 
-import android.databinding.DataBindingUtil
-import android.databinding.ViewDataBinding
+import androidx.databinding.DataBindingUtil
+import androidx.databinding.ViewDataBinding
 import android.os.Bundle
 import com.lib.cya.mvvm.MVVMSDK
 import com.lib.cya.mvvm.utils.NetworkUtil

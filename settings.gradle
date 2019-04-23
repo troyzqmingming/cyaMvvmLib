@@ -1,4 +1,4 @@
 //include ':app'
 //include ':myapplication'
 include ':mvvmcyaLib'
-include ':lib_picker'
+//include ':lib_picker'

@@ -1,7 +1,7 @@
 package com.lib.cya.mvvm.binding.viewadapter.viewpager
 
-import android.databinding.BindingAdapter
-import android.support.v4.view.ViewPager
+import androidx.databinding.BindingAdapter
+import androidx.viewpager.widget.ViewPager
 import com.lib.cya.mvvm.adapter.BaseFragmentAdapter
 
 class ViewAdapter {
