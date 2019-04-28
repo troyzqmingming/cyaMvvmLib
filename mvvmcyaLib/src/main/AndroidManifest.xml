@@ -2,4 +2,8 @@
     package="com.lib.cya.mvvm" >
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+
+    <application>
+        <receiver android:name="com.lib.cya.mvvm.update.UpdateNotificationReceiver" />
+    </application>
 </manifest>
