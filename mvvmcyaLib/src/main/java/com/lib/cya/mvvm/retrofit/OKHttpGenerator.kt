@@ -6,6 +6,7 @@ import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.Response
 import okhttp3.internal.platform.Platform
+import okhttp3.logging.HttpLoggingInterceptor
 import java.util.concurrent.TimeUnit
 
 internal class OKHttpGenerator private constructor() {
@@ -49,13 +50,19 @@ internal class OKHttpGenerator private constructor() {
         return builder.build()
     }
 
+    private fun getHttpLogger(): HttpLoggingInterceptor {
+        val builder = HttpLoggingInterceptor()
+        builder.level = HttpLoggingInterceptor.Level.BODY
+        return builder
+    }
+
     private fun getOKHttp(maxRetryCount: Int): OkHttpClient {
         return OkHttpClient.Builder()
                 .readTimeout(READ_TIMEOUT.toLong(), TimeUnit.SECONDS)
                 .writeTimeout(WRITE_TIMEOUT.toLong(), TimeUnit.SECONDS)
                 .connectTimeout(CONNECT_TIMEOUT.toLong(), TimeUnit.SECONDS)
                 .addInterceptor(getLoggerInterceptor())
-                .addInterceptor(RetrofitLogInterceptor())
+                .addInterceptor(getHttpLogger())
                 .addInterceptor(Retry(maxRetryCount))
                 .addInterceptor { chain: Interceptor.Chain? ->
                     val builder = chain!!.request().newBuilder()
