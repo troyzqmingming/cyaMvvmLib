@@ -61,7 +61,7 @@ internal class OKHttpGenerator private constructor() {
                 .readTimeout(READ_TIMEOUT.toLong(), TimeUnit.SECONDS)
                 .writeTimeout(WRITE_TIMEOUT.toLong(), TimeUnit.SECONDS)
                 .connectTimeout(CONNECT_TIMEOUT.toLong(), TimeUnit.SECONDS)
-                .addInterceptor(getHttpLogger())
+                .addInterceptor(getLoggerInterceptor())
                 .addInterceptor(Retry(maxRetryCount))
                 .addInterceptor { chain: Interceptor.Chain? ->
                     val builder = chain!!.request().newBuilder()
