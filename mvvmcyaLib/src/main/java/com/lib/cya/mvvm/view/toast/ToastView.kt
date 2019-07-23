@@ -1,6 +1,7 @@
 package com.lib.cya.mvvm.view.toast
 
 import android.content.Context
+import android.view.Gravity
 import android.widget.Toast
 
 object ToastView {
@@ -15,6 +16,7 @@ object ToastView {
                 toast?.setText(it)
                 toast?.duration = duration
             }
+            toast?.setGravity(Gravity.CENTER,0,0)
             toast?.show()
         }
     }
