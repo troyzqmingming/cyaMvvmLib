@@ -46,6 +46,25 @@ class RetrofitManager private constructor(private val baseUrl: String, private v
                 })
     }
 
+    fun <R, S> doRequest2(retrofitInterfaceClass: Class<S>, callback: IRetrofitBaseRequestCallback<R, S>): Disposable? {
+        val iService: S = RetrofitGenerator.instance.build(baseUrl, header).create(retrofitInterfaceClass)
+        val call = callback.buildFlowable(iService)
+        return call
+                ?.map { responseBody: ResponseBody ->
+                    callback.onGotResponseBodySuccess(responseBody)
+                }
+                ?.onBackpressureBuffer()
+                ?.subscribeOn(Schedulers.io())
+                ?.observeOn(AndroidSchedulers.mainThread())
+                ?.subscribe({ r: R ->
+                    progress?.dismissDialog()
+                    callback.onGotSuccess(r)
+                }, { t: Throwable ->
+                    progress?.dismissDialog()
+                    callback.onThrowable(t)
+                })
+    }
+
 
     /**
      * builder模式

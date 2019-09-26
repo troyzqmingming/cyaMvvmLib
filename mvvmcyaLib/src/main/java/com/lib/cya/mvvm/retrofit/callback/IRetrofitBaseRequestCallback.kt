@@ -1,7 +1,7 @@
 package com.lib.cya.mvvm.retrofit.callback
 
+import io.reactivex.Flowable
 import io.reactivex.Observable
-import io.reactivex.disposables.Disposable
 import okhttp3.ResponseBody
 
 /**
@@ -11,6 +11,9 @@ import okhttp3.ResponseBody
 interface IRetrofitBaseRequestCallback<R, S> {
 
     fun buildObservable(retrofitInterface: S): Observable<ResponseBody>
+
+    fun buildFlowable(retrofitInterface: S): Flowable<ResponseBody>?
+
     fun onGotResponseBodySuccess(response: ResponseBody): R
     fun onGotSuccess(result: R)
     /**
