@@ -56,6 +56,9 @@ class RetrofitManager private constructor(private val baseUrl: String, private v
                 ?.onBackpressureBuffer()
                 ?.subscribeOn(Schedulers.io())
                 ?.observeOn(AndroidSchedulers.mainThread())
+                ?.doOnCancel {
+                    callback.onCancel()
+                }
                 ?.subscribe({ r: R ->
                     progress?.dismissDialog()
                     callback.onGotSuccess(r)

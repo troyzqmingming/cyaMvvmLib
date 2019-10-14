@@ -37,4 +37,7 @@ abstract class RetrofitSimpleRequestCallback<R, S>(val context: Context) : IRetr
         }
     }
 
+    override fun onCancel() {
+    }
+
 }

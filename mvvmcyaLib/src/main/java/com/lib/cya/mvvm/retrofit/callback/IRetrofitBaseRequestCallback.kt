@@ -20,4 +20,6 @@ interface IRetrofitBaseRequestCallback<R, S> {
      * 可使用exceptionEngine
      */
     fun onThrowable(throwable: Throwable)
+
+    fun onCancel()
 }
